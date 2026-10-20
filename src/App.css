@@ -1,3 +1,14 @@
+/* ============================================================
+   THEME VARIABLES — change the header colours here
+   ============================================================ */
+:root {
+  --header-bg: linear-gradient(135deg, #2e1065 0%, #6d28d9 100%);   /* header bar */
+  --header-bg-dark: #26104f;                                         /* mobile dropdown panel */
+  --header-bg-scrolled: rgba(46, 16, 101, 0.95);                     /* header after scrolling */
+  --header-hover-bg: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+  --header-hover-text: #1a1a2e;
+}
+
 body{
   background:rgb(241, 241, 248);
   width:100%;
@@ -1282,34 +1293,8 @@ margin-left:30px;
     font-weight:bold;
     margin:25px;
   }
-  .navbar2{
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction: column;
-    text-align:center;
-    box-shadow:2px 2px 0,0 black;
-  }
-  .navbar2 a{
-    margin-top:2px;
-    width:100%;
-    
-  }
-  .navbar2 .fahome{
-    margin-left:75%;
-  }
-  .navabarr:hover{
-    width:91%;
-    margin-left:10px;
-
-  }.navabarr{
-    width:100%;
-  }
-  .navabarr:hover{
-    background:black;
-
-  }
+  /* (old .navbar2 / .navabarr mobile rules removed — see the
+     "MOBILE / TABLET HEADER" section near the end of this file) */
   .navbarr{
     margin-left:40%;
   }
@@ -1636,7 +1621,7 @@ margin-left:30px;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: var(--header-bg);                 /* ← header colour (see :root at the top) */
   position: fixed;
   width: 100%;
   top: 0;
@@ -1764,45 +1749,51 @@ margin-left:30px;
     left: 0;
     width: 100%;
     height: 100vh; /* Full viewport height */
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: var(--header-bg);                /* ← menu panel colour */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 2.5rem;
+    align-items: stretch;                         /* links run edge to edge */
+    gap: 0;
     transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    padding: 2rem;
+    padding: 4.5rem 0 2rem;                       /* no side padding → hover reaches screen edges */
+    margin: 0;
     box-sizing: border-box;
+    overflow-y: auto;
   }
 
   .header2.open {
     top: 0; /* Slide in from top */
   }
 
+  /* Each link is a full-width row, so the hover colour spans the whole screen */
   .header2 a {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
-    padding: 0.8rem 2rem;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    width: 80%;
-    max-width: 300px;
+    color: rgba(255, 255, 255, 0.92);
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
     text-align: center;
     position: relative;
     letter-spacing: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .header2 a::after {
     display: none; /* Remove underline effect on mobile */
   }
 
-  .header2 a:hover {
-    background: linear-gradient(45deg, #f7971e, #ffd200);
-    color: #1a1a2e;
-    transform: scale(1.05) translateY(-3px);
-    box-shadow: 0 10px 30px rgba(247, 151, 30, 0.3);
+  .header2 a:hover,
+  .header2 a:active {
+    background: var(--header-hover-bg);
+    color: var(--header-hover-text);
+    transform: none;                              /* no scale → can't overflow the screen */
+    box-shadow: none;
   }
 
   /* Animation for menu items */
@@ -1852,9 +1843,9 @@ margin-left:30px;
   }
 
   .header2 a {
-    font-size: 1.5rem;
-    padding: 0.6rem 1.5rem;
-    width: 90%;
+    font-size: 1.4rem;
+    padding: 0.9rem 1.5rem;
+    width: 100%;
   }
 
   .menu-icon {
@@ -1895,40 +1886,121 @@ body {
 
 /* Optional: Add a subtle animation to the header on scroll */
 .header.scrolled {
-  background: rgba(26, 26, 46, 0.95);
+  background: var(--header-bg-scrolled);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* ============================================================
+   MOBILE / TABLET HEADER  (HomePage: .navbar2 + .navbars2 dropdown)
+   - shows at 768px and below (the side nav .navbars hides at 768px)
+   - bar and dropdown run edge to edge, every link row is 100% wide,
+     so the hover colour reaches the end of the screen
+   ============================================================ */
+@keyframes navDrop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
+@media screen and (max-width: 768px) {
 
+  .navbar2 {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    width: 100vw;                                 /* full screen width … */
+    margin: 0 0 0 calc(50% - 50vw);               /* … even if body/root has side margins */
+    padding: 0;
+    text-align: left;
+    background: var(--header-bg);                 /* ← header colour */
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+  }
 
+  /* top bar: brand on the left, hamburger on the right */
+  .navbar2 .fahome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 10px 16px;
+  }
 
+  .navbar2 .fahome::before {                      /* delete this rule if you don't want the name */
+    content: "Kelvin Mutinda";
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+  }
 
+  .navbar2 .fahome h3 {
+    margin: 0;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
 
+  .navbar2 .fahome h3:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
 
+  /* dropdown panel */
+  .navbars2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0 0 6px;
+    background: var(--header-bg-dark);
+    animation: navDrop 0.25s ease;
+  }
 
+  /* each row spans the full screen width */
+  .navbars2 .navabarr {
+    width: 100%;
+    height: auto;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
 
+  .navbars2 .navabarr:hover {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    background: var(--header-hover-bg);
+    color: var(--header-hover-text);
+  }
 
+  .navbars2 .navabarr a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 14px 20px;
+    border-radius: 0;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  .navbars2 .navabarr:hover a,
+  .navbars2 .navabarr a:hover {
+    color: var(--header-hover-text);
+    background: var(--header-hover-bg);
+    padding-left: 26px;
+  }
+}
