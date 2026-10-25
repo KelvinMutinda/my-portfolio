@@ -1,27 +1,47 @@
 /* ============================================================
-   THEME VARIABLES — change the header colours here
+   THEME VARIABLES
    ============================================================ */
 :root {
-  --header-bg: linear-gradient(135deg, #2e1065 0%, #6d28d9 100%);   /* header bar */
-  --header-bg-dark: #26104f;                                         /* mobile dropdown panel */
-  --header-bg-scrolled: rgba(46, 16, 101, 0.95);                     /* header after scrolling */
-  --header-hover-bg: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
-  --header-hover-text: #1a1a2e;
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --border: #eaeaea;
+  --text: #171717;
+  --muted: #666666;
+  --subtle: #8f8f8f;
+  --hover: #f4f4f5;
+  --active: #efefef;
+  --accent: #4f46e5;
+
+  --side-w: 260px;     /* desktop sidebar width */
+  --bar-h: 56px;       /* mobile top bar height */
+  --header-h: 64px;    /* desktop top header (pages still using .header) */
+
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
 }
 
 body{
-  background:rgb(241, 241, 248);
+  background:var(--bg);
+  color:var(--text);
   width:100%;
   overflow-x:hidden;
+  margin:0;
+  font-family:var(--font-ui);
 }
-.header a{
-  text-decoration:none;
-  font-size:20px;
-  margin-top:50px;
-  color:rgb(15, 15, 15);
-  padding-top:30px;
- 
+
+html {
+  scroll-behavior: smooth;
 }
+
+/* space for the fixed .header used by the other pages */
+body {
+  padding-top: var(--header-h);
+}
+
+/* pages that use <SideNav /> have no top padding on desktop */
+body.has-sidenav {
+  padding-top: 0;
+}
+
 .pines{
   width:100%;
   height:200px;
@@ -107,10 +127,6 @@ body{
     color:green;
 }
 
-.header a:hover{
-  color:yellowgreen;
-  text-decoration: underline;display:block;
-}
 /* General section styling */
 #myProjects {
   padding: 40px 20px;
@@ -210,83 +226,6 @@ body{
   opacity: 1;
 }
 
-
-
-.header{
-  display:block;
-  background:rgb(243, 236, 236);
-  width:100%;
-  height:40px;
-  padding:10px;
-}
-.navbar2{
-  display:none;
-}
-.navbar2{
-  text-align:center;
-}
-
-.header1{
-  display:block;
-}
-.navbar{
-  margin:10px;
-  padding:5px;
-}
-
-.navbar a {
-  display: flex; 
-  align-items: center; 
-  gap: 15px;
-  color: #333; 
-  font-weight: bold; 
-  margin: 30px 0; 
-  transition: color 0.3s ease;
-}
-
-
-.navabarr:hover{
-  background:rgb(83, 81, 81);
-  color:white;
-  width:120%;
-  height:20px;
-  transition: 0.5s;
-  border-radius:0.4rem;
-  
- 
-}
-
-
-.navabarr a:hover{
-  color:white;
-}
-.navabarr, .navabarr:hover {
-  height: 25px;  
-  line-height: 25px; 
-}
-
-
-
-.navabarr{
-  margin-top:20px;
-  padding:2px;
-  height:20px;
- 
-
-}
-.navabarr a {
-  display: flex;  align-items: center; 
-  gap: 5px;
-  text-decoration: none;
-  color: #333; 
-  font-weight: bold; 
-  padding:1.5px 2px;
-  width:150px;
-  height:25px;
-  transition: all 0.3s ease; 
-  border-radius: 6px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 .skills h4{
   margin:20px;
 }
@@ -328,43 +267,6 @@ body{
   height:60px;
   margin:5px;
 }
-.homepage{
-  display:block;
-  margin-top:40px;
-}
-.Home1 h1{
-  font-size:40px;
-   margin-left:30px;
-   color:blueviolet,red,blue,green;
-}
-
-.Home1 p{
-  font-size:20px;
-  margin-left:30px;
-  font-style:inherit;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color:black;
-  font-weight:bold;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-  
-}
-.Home1 h2{
-  margin-left:30px;
-}
-.Home1 h3{
-  margin-left:30px;
-  font-size:20px;
-  font-family:'Times New Roman', Times, serif;
-  color:black;
-  font-weight:400;
-}
-.home1 h3:hover{
-  color:greenyellow;
-}
-.header1 a{
-  margin-left:10px;
-}
 .toolin{
   width:30px;
   margin:5px;
@@ -376,18 +278,6 @@ body{
 .toolsin p{
   display:flex;
   width:30px;
-}
-#home{
-  top:20px;
-  margin-left:50px;
-  width:20%;
-}
-.home-response{
-  display:flex;
-  flex-direction: row;
-}
-.Home2 , .home1{
-  margin-left:30px;
 }
 .intro{
   margin-left:5%;
@@ -487,12 +377,6 @@ hr{
   min-width: 120px;
   height:30px;
 }
-.navbars{
-  padding:5px;
-}
-
-
-
 
 .tool-list {
   display: flex;
@@ -582,12 +466,6 @@ hr{
   border-radius:0.2rem;
   font-size:15px;
   color:rgb(255, 255, 255);
-}
-.navabarr{
-  align-items:center;
-  padding:10px;
-  margin-top:10px;
-
 }
 .btn1:hover{
   background:rgb(133, 3, 46);
@@ -689,9 +567,6 @@ hr{
   font-family:Georgia, 'Times New Roman', Times, serif;
 
 }
-.home-response{
-  display:flex;
-}
 .project2 h2,h3,p{
   margin-left:30px;
 }
@@ -743,10 +618,6 @@ margin-left:30px;
   border-radius:0.4rem;
 }.con-buttons{
   margin-left:5%;
-}
-.navbars{
-  margin:20px;
-  padding:5px;
 }
 .git1{
   width:150px;
@@ -1128,8 +999,6 @@ margin-left:30px;
   background: #333;
 }
 
-
-
 .btn10,.btn11:hover {
   background: linear-gradient(135deg, #ff7eb3, #ff758c); 
   transform: translateY(-3px);
@@ -1150,54 +1019,487 @@ margin-left:30px;
    text-decoration:none;
    color:black
 }
-.menu-icon {
-  display: none;
-  font-size: 24px;
-  cursor: pointer;
-}
 .project44{
   width:400px;
   height:400px;
 }
 
 
+/* ============================================================
+   SIDEBAR (desktop) — Vercel style
+   used by <SideNav /> in HomePage
+   ============================================================ */
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--side-w);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  z-index: 1100;
+  font-family: var(--font-ui);
+}
 
+.sidenav-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 18px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.sidenav-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.sidenav-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+.sidenav-role {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.sidenav-label {
+  margin: 4px 0 6px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--subtle);
+}
+
+.sidenav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidenav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #444444;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sidenav-link svg {
+  flex-shrink: 0;
+  font-size: 17px;
+  color: var(--subtle);
+  transition: color 0.15s ease;
+}
+
+.sidenav-link:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.sidenav-link:hover svg {
+  color: var(--text);
+}
+
+.sidenav-link.active {
+  background: var(--active);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.sidenav-link.active svg {
+  color: var(--text);
+}
+
+.sidenav-footer {
+  margin-top: auto;
+  padding: 14px 4px 4px;
+  border-top: 1px solid var(--border);
+}
+
+.sidenav-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+}
+
+.sidenav-cta {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #171717;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.sidenav-cta:hover {
+  background: #383838;
+}
+
+/* page content sits to the right of the sidebar */
+.page-with-sidenav {
+  margin-left: var(--side-w);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* mobile-only pieces are hidden on desktop */
+.topbar,
+.topbar-menu,
+.topbar-backdrop {
+  display: none;
+}
+
+
+/* ============================================================
+   HEADER for pages that still use .header / .header2
+   (light, clean — hamburger on the LEFT on mobile)
+   ============================================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-h);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  margin: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.header1 {
+  flex: 1;
+}
+
+.header1 a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  margin: 0;
+  padding: 0;
+}
+
+.header2 {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.header2 a {
+  position: relative;
+  padding: 0.5rem 0;
+  margin: 0;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.header2 a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--text);
+  transition: width 0.25s ease;
+}
+
+.header2 a:hover {
+  color: var(--text);
+}
+
+.header2 a:hover::after {
+  width: 100%;
+}
+
+/* hamburger + close icons: hidden on desktop */
+.menu-icon,
+.close-icon {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.menu-icon:hover,
+.close-icon:hover {
+  background: var(--hover);
+}
+
+
+/* ============================================================
+   MOBILE / TABLET  (≤ 768px)
+   ============================================================ */
 @media (max-width: 768px) {
-  .menu-icon {
-    display: block;
+
+  /* one consistent top spacing for every page */
+  body,
+  body.has-sidenav {
+    padding-top: var(--bar-h);
   }
 
-  .header2 {
+  /* ---- SideNav on mobile: top bar + dropdown ---- */
+  .sidenav {
     display: none;
-    flex-direction: column;
-    position: absolute;
-    right: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background:rgb(54, 40, 40);
-    margin-left:90%;
   }
 
+  .page-with-sidenav {
+    margin-left: 0;
+    min-height: auto;
+  }
+
+  .topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--bar-h);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 1200;
+  }
+
+  .topbar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .topbar-toggle:hover,
+  .topbar-toggle:active {
+    background: var(--hover);
+  }
+
+  .topbar-brand {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.1px;
+  }
+
+  .topbar-backdrop {
+    display: block;
+    position: fixed;
+    top: var(--bar-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 1150;
+  }
+
+  .topbar-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--bar-h);
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - var(--bar-h));
+    overflow-y: auto;
+    padding: 6px 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    z-index: 1180;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .topbar-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* rows run edge to edge */
+  .topbar-menu .sidenav-link {
+    padding: 14px 20px;
+    border-radius: 0;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .topbar-menu .sidenav-link:last-child {
+    border-bottom: 0;
+  }
+
+  .topbar-menu .sidenav-link.active {
+    background: var(--active);
+    box-shadow: inset 3px 0 0 var(--text);
+  }
+
+  /* ---- Other pages: .header with hamburger on the LEFT ---- */
+  .header {
+    height: var(--bar-h);
+    padding: 0 14px;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+
+  .menu-icon {
+    display: flex;
+    order: -1;                 /* always first = top-left */
+    z-index: 1001;
+  }
+
+  .header1 {
+    order: 0;
+    flex: 1;
+  }
+
+  .header1 a {
+    font-size: 1rem;
+  }
+
+  /* full-screen menu panel */
+  .header2 {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: calc(var(--bar-h) + 8px) 0 2rem;
+    background: var(--surface);
+    overflow-y: auto;
+    z-index: 1100;
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .header2.open {
+    top: 0;
+  }
+
+  .header2 a {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 20px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #333333;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header2 a::after {
+    display: none;
+  }
+
+  .header2 a:hover,
+  .header2 a:active {
+    background: var(--hover);
+    color: var(--text);
+  }
+
+  /* close icon sits exactly where the hamburger is */
+  .close-icon {
+    display: flex;
+    position: absolute;
+    top: calc((var(--bar-h) - 40px) / 2);
+    left: 14px;
+    right: auto;
+    z-index: 1101;
+  }
+
+  /* ---- original responsive tweaks for the other pages ---- */
   .Home{
     width:100%;
   }
-  .navbars{
-    margin-left:10px;
-    display:none;
-  }
-  .Home1 h2{
-    font-size:15px;
-    display:flex;
-    width:100%;
-
-  }
-  .header2 a{
-    color:white;
-  }
-  .header2.open {
-    display: flex;
-  }
-  
 }
 
 
@@ -1216,12 +1518,6 @@ margin-left:30px;
   .myProject{
     width:95%;
   }
-  .homepage{
-    width:100%;
-    display:flex;
-    margin-left:70px;
-    top:20px;
-  }
   .myProjects{
     width:100%;
   }
@@ -1236,41 +1532,14 @@ margin-left:30px;
   .Home{
     width:100%;
   }
-  .navbars{
-    margin-left:10px;
-  }
   #myProjects h2,p{
     margin:10px;
-  }
-  .Home1 h2{
-    font-size:20px;
-    margin-top:20px;
-    margin-left:10px;
-    width:100%;
-
-  }
-  .home img{
-    margin-left:-55px;
-  }
-  .Home1 p{
-    font-size:13px;
-    margin-left:-50px;
-
-  }
-  .homepage p{
-    font-size:13px;
-    margin-left:5px;
   }
   .working h2{
     font-size:17px;
   }
   .open-to{
     margin:5px;
-  }
-
-  #home{
-    width:100%;
-    margin-left:-55px;
   }
   .intro h1{
     font-size:20px;
@@ -1293,19 +1562,6 @@ margin-left:30px;
     font-weight:bold;
     margin:25px;
   }
-  /* (old .navbar2 / .navabarr mobile rules removed — see the
-     "MOBILE / TABLET HEADER" section near the end of this file) */
-  .navbarr{
-    margin-left:40%;
-  }
-  .navbarr a{
-    margin-left:40%;
-  }
-  .navbars{
-    border:0px 1px 2px black;
-    background:white;
-  }
-
   .serv p{
     font-size:15px;
     margin-left:25px;
@@ -1328,31 +1584,6 @@ margin-left:30px;
   .li{
     display:flex;
   }
-  .header {
-    flex-direction: column;
-    display:flex;
-    height: auto;
-    padding: 20px;
-  }
-  .menu-icon{
-    margin-left:80%;
-    margin-top:-30px;
-    width:30px;
-  }
-  .close-icon{
-    color:white;
-    width:50px;
-  }
-  .home-response{
-    display: flex;
-    flex-wrap:wrap;
-  }
-  .header2{
-    width:60%;
-    top:0;
-    right:0;
-  
-  }
   .services{
     height:auto;
     overflow:hidden;
@@ -1369,11 +1600,6 @@ margin-left:30px;
   .img{
     width:70px;
     height:60px;
-  }
-
-  .header a {
-    margin: 10px;
-    font-size: 18px;
   }
 
   .projects,
@@ -1410,10 +1636,6 @@ margin-left:30px;
     width:100%;
   }
 
-  .Home1 p {
-    font-size: 18px;
-    margin-left: 10px;
-  }
   .sserve{
     margin:5px;
   }
@@ -1461,9 +1683,6 @@ margin-left:30px;
     margin: 20px auto;
     height:fit-content;
     margin-left:30px;
-  }
-  .header1 a{
-    margin:3px;
   }
   .myProject{
     width:100%;
@@ -1524,15 +1743,15 @@ margin-left:30px;
     width:90%;
   }
 
-  
+  /* keep the header icons at a normal size (the global img rule above is only for pictures) */
+  .sidenav-avatar {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 
 @media screen and (min-width: 601px) and (max-width: 1024px) {
-  .header a {
-    margin-left: 30px;
-    font-size: 18px;
-  }
   .About h1{
     font-size:20px;
     margin-left:10px;
@@ -1583,11 +1802,6 @@ margin-left:30px;
 
 /* 🖥️ Large screens (1025px and above) */
 @media screen and (min-width: 1025px) {
-  .header a {
-    font-size: 20px;
-    margin-left: 100px;
-  }
-
   .img,
   .img2 {
     max-width: 500px;
@@ -1615,392 +1829,14 @@ margin-left:30px;
     max-width: 500px;
   }
 }
-/* Header Container */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: var(--header-bg);                 /* ← header colour (see :root at the top) */
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-}
 
-.header1 {
-  flex: 1;
-}
-
-.header1 a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
-  background: linear-gradient(45deg, #f7971e, #ffd200);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.header1 a:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
-
-/* Desktop Navigation */
-.header2 {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.header2 a {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.5rem 0;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.header2 a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(45deg, #f7971e, #ffd200);
-  transition: width 0.3s ease;
-}
-
-.header2 a:hover {
-  color: #ffffff;
-}
-
-.header2 a:hover::after {
-  width: 100%;
-}
-
-/* Hamburger Menu Icon */
-.menu-icon {
-  display: none;
-  cursor: pointer;
-  font-size: 2rem;
-  color: #ffffff;
-  transition: all 0.3s ease;
-  padding: 0.5rem;
-  border-radius: 8px;
-}
-
-.menu-icon:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: rotate(90deg);
-}
-
-/* Close Icon */
-.close-icon {
-  display: none;
-  cursor: pointer;
-  font-size: 2rem;
-  color: #ffffff;
-  position: absolute;
-  top: 1.5rem;
-  right: 2rem;
-  transition: all 0.3s ease;
-  padding: 0.5rem;
-  border-radius: 50%;
-}
-
-.close-icon:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: rotate(90deg);
-}
-
-/* Mobile Responsive Styles */
-@media screen and (max-width: 768px) {
-  .header {
-    padding: 1rem 1.5rem;
-  }
-
-  .header1 a {
-    font-size: 1.2rem;
-  }
-
-  .menu-icon {
-    display: block;
-    z-index: 1001;
-  }
-
-  .close-icon {
-    display: block;
-  }
-
-  /* Mobile Navigation - Full Screen */
-  .header2 {
-    position: fixed;
-    top: -100%; /* Start off screen */
-    left: 0;
-    width: 100%;
-    height: 100vh; /* Full viewport height */
-    background: var(--header-bg);                /* ← menu panel colour */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;                         /* links run edge to edge */
-    gap: 0;
-    transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
-    padding: 4.5rem 0 2rem;                       /* no side padding → hover reaches screen edges */
-    margin: 0;
-    box-sizing: border-box;
-    overflow-y: auto;
-  }
-
-  .header2.open {
-    top: 0; /* Slide in from top */
-  }
-
-  /* Each link is a full-width row, so the hover colour spans the whole screen */
-  .header2 a {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.92);
-    padding: 1rem 1.5rem;
-    border-radius: 0;
-    transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
-    width: 100%;
-    max-width: none;
-    box-sizing: border-box;
-    text-align: center;
-    position: relative;
-    letter-spacing: 2px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .header2 a::after {
-    display: none; /* Remove underline effect on mobile */
-  }
-
-  .header2 a:hover,
-  .header2 a:active {
-    background: var(--header-hover-bg);
-    color: var(--header-hover-text);
-    transform: none;                              /* no scale → can't overflow the screen */
-    box-shadow: none;
-  }
-
-  /* Animation for menu items */
-  .header2.open a {
-    animation: slideIn 0.5s ease forwards;
-    opacity: 0;
-  }
-
-  .header2.open a:nth-child(2) { animation-delay: 0.1s; }
-  .header2.open a:nth-child(3) { animation-delay: 0.2s; }
-  .header2.open a:nth-child(4) { animation-delay: 0.3s; }
-  .header2.open a:nth-child(5) { animation-delay: 0.4s; }
-  .header2.open a:nth-child(6) { animation-delay: 0.5s; }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Add a subtle background overlay when menu is open */
-  .header2.open::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(247, 151, 30, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-  }
-}
-
-/* Small Mobile Devices */
-@media screen and (max-width: 480px) {
-  .header {
-    padding: 0.8rem 1rem;
-  }
-
-  .header1 a {
-    font-size: 1rem;
-  }
-
-  .header2 a {
-    font-size: 1.4rem;
-    padding: 0.9rem 1.5rem;
-    width: 100%;
-  }
-
-  .menu-icon {
-    font-size: 1.6rem;
-  }
-
-  .close-icon {
-    font-size: 1.6rem;
-    top: 1rem;
-    right: 1.5rem;
-  }
-}
-
-/* Tablet Styles */
+/* Tablet header spacing */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .header {
-    padding: 1rem 2rem;
+    padding: 0 1.5rem;
   }
 
   .header2 {
-    gap: 1.5rem;
-  }
-
-  .header2 a {
-    font-size: 0.95rem;
-  }
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Add padding to body to account for fixed header */
-body {
-  padding-top: 70px;
-}
-
-/* Optional: Add a subtle animation to the header on scroll */
-.header.scrolled {
-  background: var(--header-bg-scrolled);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
-}
-
-/* ============================================================
-   MOBILE / TABLET HEADER  (HomePage: .navbar2 + .navbars2 dropdown)
-   - shows at 768px and below (the side nav .navbars hides at 768px)
-   - bar and dropdown run edge to edge, every link row is 100% wide,
-     so the hover colour reaches the end of the screen
-   ============================================================ */
-@keyframes navDrop {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@media screen and (max-width: 768px) {
-
-  .navbar2 {
-    display: block;
-    position: sticky;
-    top: 0;
-    z-index: 900;
-    width: 100vw;                                 /* full screen width … */
-    margin: 0 0 0 calc(50% - 50vw);               /* … even if body/root has side margins */
-    padding: 0;
-    text-align: left;
-    background: var(--header-bg);                 /* ← header colour */
-    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
-  }
-
-  /* top bar: brand on the left, hamburger on the right */
-  .navbar2 .fahome {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0;
-    padding: 10px 16px;
-  }
-
-  .navbar2 .fahome::before {                      /* delete this rule if you don't want the name */
-    content: "Kelvin Mutinda";
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: 0.5px;
-  }
-
-  .navbar2 .fahome h3 {
-    margin: 0;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background 0.2s ease;
-  }
-
-  .navbar2 .fahome h3:hover {
-    background: rgba(255, 255, 255, 0.15);
-  }
-
-  /* dropdown panel */
-  .navbars2 {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 0;
-    padding: 0 0 6px;
-    background: var(--header-bg-dark);
-    animation: navDrop 0.25s ease;
-  }
-
-  /* each row spans the full screen width */
-  .navbars2 .navabarr {
-    width: 100%;
-    height: auto;
-    line-height: normal;
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .navbars2 .navabarr:hover {
-    width: 100%;
-    height: auto;
-    margin: 0;
-    border-radius: 0;
-    background: var(--header-hover-bg);
-    color: var(--header-hover-text);
-  }
-
-  .navbars2 .navabarr a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-sizing: border-box;
-    width: 100%;
-    height: auto;
-    padding: 14px 20px;
-    border-radius: 0;
-    color: #ffffff;
-    font-size: 1rem;
-    transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
-  }
-
-  .navbars2 .navabarr:hover a,
-  .navbars2 .navabarr a:hover {
-    color: var(--header-hover-text);
-    background: var(--header-hover-bg);
-    padding-left: 26px;
+    gap: 1.25rem;
   }
 }
