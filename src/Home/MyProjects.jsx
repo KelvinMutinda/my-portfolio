@@ -1,7 +1,6 @@
+import { useState } from "react";
 import aboutImg from "../assets/About.png";
-import {
-  FaReact, FaNodeJs, FaCode,
-} from "react-icons/fa";
+import { FaReact, FaNodeJs, FaCode, FaArrowRight } from "react-icons/fa";
 import {
   SiMysql, SiLaravel, SiTailwindcss, SiNextdotjs,
   SiJavascript, SiPython, SiStreamlit,
@@ -340,9 +339,12 @@ const FemScanPreview = () => {
   );
 };
 
+const FILTERS = ["All", "Web", "Full Stack", "AI", "Education & Finance"];
+
 const projects = [
   {
     href: "https://pinecreative2-mw4b.vercel.app",
+    category: "Web",
     renderCustom: null,
     useImported: true,
     img: null,
@@ -357,6 +359,7 @@ const projects = [
   },
   {
     href: "https://propel-company-ai-website-zkh2.vercel.app/",
+    category: "Web",
     renderCustom: null,
     useImported: false,
     img: "/Propel.png",
@@ -371,6 +374,7 @@ const projects = [
   },
   {
     href: "https://exper-brain-4pi6.vercel.app/",
+    category: "AI",
     renderCustom: null,
     useImported: false,
     img: "/Experbrain.png",
@@ -385,6 +389,7 @@ const projects = [
   },
   {
     href: "https://predictionsite-gr8r.vercel.app/",
+    category: "Full Stack",
     renderCustom: null,
     useImported: false,
     img: "/Ziggy Martoh.png",
@@ -399,6 +404,7 @@ const projects = [
   },
   {
     href: "https://trialbal-two.vercel.app/",
+    category: "Education & Finance",
     renderCustom: null,
     useImported: false,
     img: null,
@@ -413,6 +419,7 @@ const projects = [
   },
   {
     href: "https://femscan.streamlit.app/",
+    category: "AI",
     renderCustom: "femscan",
     useImported: false,
     img: null,
@@ -427,6 +434,7 @@ const projects = [
   },
   {
     href: "https://presidential-awards.vercel.app/",
+    category: "Full Stack",
     renderCustom: "presidential",
     useImported: false,
     img: null,
@@ -441,6 +449,7 @@ const projects = [
   },
   {
     href: "https://stephenkanjaportal.infinityfreeapp.com/",
+    category: "Education & Finance",
     renderCustom: null,
     useImported: false,
     img: "/StephenKanja.jpg",
@@ -455,6 +464,7 @@ const projects = [
   },
   {
     href: "https://www.usfederalaid.com/",
+    category: "Education & Finance",
     renderCustom: null,
     useImported: false,
     img: "/federal.png",
@@ -469,34 +479,165 @@ const projects = [
   },
 ];
 
-const cardStyles = [
-  "#myProjects, .mp-grid { overflow: visible !important; max-height: none !important; height: auto !important; }",
-  ".mp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-auto-rows: auto; gap: 28px; padding: 12px 0 40px; }",
-  ".mp-card { position: relative; text-align: left; border-radius: 16px; overflow: hidden; background: #ffffff; border: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; transition: transform 0.25s ease, box-shadow 0.25s ease; text-decoration: none; color: inherit; cursor: pointer; }",
-  ".mp-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.13); }",
-  ".mp-card:hover .mp-card-overlay { opacity: 1; }",
-  ".mp-card:hover .mp-card-img-wrap img { transform: scale(1.04); }",
-  ".mp-card-img-wrap { position: relative; width: 100%; height: 195px; background: linear-gradient(135deg, #f3f4f6 0%, #e9eaf0 100%); overflow: hidden; flex-shrink: 0; }",
-  ".mp-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }",
-  ".mp-card-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 52px; opacity: 0.2; }",
-  ".mp-card-overlay { position: absolute; inset: 0; background: rgba(10,10,30,0.55); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s ease; z-index: 10; }",
-  ".mp-card-overlay span { color: #fff; font-size: 15px; font-weight: 600; letter-spacing: 0.3px; border: 1.5px solid rgba(255,255,255,0.7); padding: 9px 22px; border-radius: 30px; }",
-  ".mp-card-new-badge { position: absolute; top: 12px; right: 12px; background: #22c55e; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; z-index: 11; }",
-  ".mp-card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }",
-  ".mp-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }",
-  ".mp-card-title { font-size: 16px; font-weight: 700; color: #111; margin: 0; line-height: 1.3; }",
-  ".mp-card-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }",
-  ".mp-card-desc { font-size: 13.5px; color: #555; line-height: 1.65; margin: 0; flex: 1; }",
-  ".mp-stack-row { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px solid #f0f0f0; }",
-  ".mp-tech-pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 4px 9px 4px 7px; border-radius: 20px; line-height: 1; transition: transform 0.15s ease, box-shadow 0.15s ease; white-space: nowrap; }",
-  ".mp-card:hover .mp-tech-pill { transform: translateY(-1px); }",
-  ".mp-tech-pill svg { font-size: 13px; flex-shrink: 0; }",
-  "#myProjects h2 { font-size: 2rem; font-weight: 800; color: #111; margin-bottom: 6px; }",
-  "#myProjects > p { color: #666; font-size: 15px; margin-bottom: 20px; }",
-  "#myProjects hr { border: none; border-top: 2px solid #eee; margin-bottom: 28px; margin-left: 0; }",
-].join(" ");
+const cardStyles = `
+  .pj-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .pj-filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pj-filter {
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #444;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .pj-filter:hover { background: #f4f4f5; color: #171717; }
+  .pj-filter.active { background: #171717; border-color: #171717; color: #fff; }
+  .pj-count { font-size: 13px; color: #8f8f8f; }
+
+  .pj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .pj-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .pj-card:hover {
+    transform: translateY(-3px);
+    border-color: #d4d4d8;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  }
+
+  .pj-media {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f4f4f5 0%, #e9eaf0 100%);
+    border-bottom: 1px solid #eaeaea;
+  }
+  .pj-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+  .pj-card:hover .pj-media img { transform: scale(1.03); }
+  .pj-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 48px;
+    opacity: 0.25;
+  }
+  .pj-new {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #22c55e;
+    border-radius: 999px;
+  }
+
+  .pj-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 12px;
+    padding: 20px;
+  }
+  .pj-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .pj-title { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.35; color: #171717; }
+  .pj-tag {
+    flex-shrink: 0;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 999px;
+  }
+  .pj-desc { flex: 1; margin: 0; font-size: 14px; line-height: 1.65; color: #555; }
+
+  .pj-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .pj-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px 4px 7px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: 999px;
+  }
+  .pj-pill svg { font-size: 13px; flex-shrink: 0; }
+
+  .pj-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #171717;
+    background: #fafafa;
+    border-top: 1px solid #eaeaea;
+  }
+  .pj-foot svg { font-size: 12px; transition: transform 0.2s ease; }
+  .pj-card:hover .pj-foot svg { transform: translateX(4px); }
+
+  @media (max-width: 768px) {
+    .pj-grid { grid-template-columns: 1fr; }
+  }
+`;
 
 const MyProjects = () => {
+  const [filter, setFilter] = useState("All");
+
+  const visible = filter === "All" ? projects : projects.filter((p) => p.category === filter);
+
   const renderImage = (project) => {
     if (project.renderCustom === "presidential") {
       return <PresidentialAwardsPreview />;
@@ -510,7 +651,7 @@ const MyProjects = () => {
     if (project.img) {
       return <img src={project.img} alt={project.alt} />;
     }
-    return <div className="mp-card-placeholder">💻</div>;
+    return <div className="pj-placeholder">💻</div>;
   };
 
   return (
@@ -520,33 +661,56 @@ const MyProjects = () => {
       <SideNav />
 
       <main className="page-with-sidenav">
-        <section id="myProjects">
-          <h2>My Projects</h2>
-          <p>Projects I have worked on across Fullstack, AI, Design, and Featured work</p>
-          <hr />
+        <section className="pg pg-wide">
+          {/* PAGE HEADER */}
+          <header className="pg-header">
+            <span className="pg-eyebrow">Portfolio</span>
+            <h1 className="pg-title">My Projects</h1>
+            <p className="pg-sub">
+              Projects I have worked on across Fullstack, AI, Design, and Featured work.
+            </p>
+          </header>
 
-          <div className="mp-grid">
-            {projects.map((project, i) => (
+          {/* FILTERS */}
+          <div className="pj-toolbar">
+            <div className="pj-filters">
+              {FILTERS.map((f) => (
+                <button
+                  key={f}
+                  type="button"
+                  className={"pj-filter" + (filter === f ? " active" : "")}
+                  aria-pressed={filter === f}
+                  onClick={() => setFilter(f)}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+            <span className="pj-count">
+              {visible.length} {visible.length === 1 ? "project" : "projects"}
+            </span>
+          </div>
+
+          {/* CARDS */}
+          <div className="pj-grid">
+            {visible.map((project) => (
               <a
-                key={i}
+                key={project.title}
                 href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mp-card"
+                className="pj-card"
               >
-                <div className="mp-card-img-wrap">
+                <div className="pj-media">
                   {renderImage(project)}
-                  {project.isNew && <span className="mp-card-new-badge">New</span>}
-                  <div className="mp-card-overlay">
-                    <span>View Project ➜</span>
-                  </div>
+                  {project.isNew && <span className="pj-new">New</span>}
                 </div>
 
-                <div className="mp-card-body">
-                  <div className="mp-card-header">
-                    <p className="mp-card-title">{project.title}</p>
+                <div className="pj-body">
+                  <div className="pj-head">
+                    <h2 className="pj-title">{project.title}</h2>
                     <span
-                      className="mp-card-tag"
+                      className="pj-tag"
                       style={{
                         background: project.tagColor + "18",
                         color: project.tagColor,
@@ -557,16 +721,16 @@ const MyProjects = () => {
                     </span>
                   </div>
 
-                  <p className="mp-card-desc">{project.description}</p>
+                  <p className="pj-desc">{project.description}</p>
 
-                  <div className="mp-stack-row">
+                  <div className="pj-stack">
                     {project.stack.map((techKey) => {
                       const tech = TECH_META[techKey];
                       if (!tech) return null;
                       return (
                         <span
                           key={techKey}
-                          className="mp-tech-pill"
+                          className="pj-pill"
                           style={{
                             background: tech.color + "16",
                             color: tech.color,
@@ -579,6 +743,11 @@ const MyProjects = () => {
                       );
                     })}
                   </div>
+                </div>
+
+                <div className="pj-foot">
+                  <span>View project</span>
+                  <FaArrowRight />
                 </div>
               </a>
             ))}
