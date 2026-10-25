@@ -1,14 +1,40 @@
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
+import { useState } from "react";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaGithub,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPaperPlane,
+  FaArrowRight,
+} from "react-icons/fa";
 import SideNav from "./Nav";
 
+const EMAIL = "mwendwamutinda24@gmail.com";
+
+const socials = [
+  { icon: <FaGithub />, name: "GitHub", handle: "mwendwamutinda24", href: "https://github.com/mwendwamutinda24" },
+  { icon: <FaLinkedin />, name: "LinkedIn", handle: "kelvin-mwendwa", href: "https://www.linkedin.com/in/kelvin-mwendwa-0b92063a" },
+  { icon: <FaInstagram />, name: "Instagram", handle: "@kelvinsoftwareengineer", href: "https://www.instagram.com/kelvinsoftwareengineer/" },
+  { icon: <FaFacebook />, name: "Facebook", handle: "Kelvin Mutinda", href: "https://www.facebook.com/kingcorbin.junior.9" },
+];
+
 const ContactMe = () => {
+  const [status, setStatus] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const message = e.target.message.value;
+    const data = new FormData(e.target);
+    const name = (data.get("name") || "").toString().trim();
+    const email = (data.get("email") || "").toString().trim();
+    const message = (data.get("message") || "").toString().trim();
 
-    const mailtoLink = `mailto:mwendwamutinda24@gmail.com?subject=Message from ${email}&body=${encodeURIComponent(message)}`;
-    window.location.href = mailtoLink;
+    const subject = `Portfolio message from ${name || email}`;
+    const body = `${message}\n\n— ${name} (${email})`;
+
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setStatus("Your email app should open with the message ready to send.");
   };
 
   return (
@@ -16,65 +42,108 @@ const ContactMe = () => {
       <SideNav />
 
       <main className="page-with-sidenav">
-        <section id="contact">
-          <div className="conect">
-            <div className="con1">
-              <h1>Contact Me</h1>
-              <p>
-                In need of answers to your questions on my work?
-                <br />
-                Get in touch.
-              </p>
-              <p>Find me on social media</p>
-              <div className="con-buttons">
-                <button className="git1">
-                  <a href="https://github.com/mwendwamutinda24" target="_blank" rel="noreferrer">
-                    <FaGithub /> Github
-                  </a>
-                </button>
-                <button className="git2">
-                  <a href="https://www.instagram.com/kelvinsoftwareengineer/" target="_blank" rel="noreferrer">
-                    <FaInstagram /> Instagram
-                  </a>
-                </button>
-                <button className="git3">
-                  <a href="https://www.facebook.com/kingcorbin.junior.9" target="_blank" rel="noreferrer">
-                    <FaFacebook /> Facebook
-                  </a>
-                </button>
-                <button className="git4">
-                  <a href="#" target="_blank" rel="noreferrer">
-                    <FaLinkedin /> LinkedIn
-                  </a>
-                </button>
+        <div className="pg">
+          {/* PAGE HEADER */}
+          <header className="pg-header">
+            <span className="pg-eyebrow">Contact</span>
+            <h1 className="pg-title">Get in touch</h1>
+            <p className="pg-sub">
+              Need answers to your questions on my work, or have a project in mind? Send a message and I'll get back to you.
+            </p>
+          </header>
+
+          <div className="ct-grid">
+            {/* LEFT: details + socials */}
+            <div className="ct-side">
+              <section className="pg-card">
+                <div className="ct-avail">
+                  <span className="ct-dot" /> Open to freelance work
+                </div>
+
+                <div className="ct-info">
+                  <div className="ct-info-item">
+                    <span className="pg-icon"><FaEnvelope /></span>
+                    <div>
+                      <span className="ct-label">Email</span>
+                      <a className="ct-value" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+                    </div>
+                  </div>
+
+                  <div className="ct-info-item">
+                    <span className="pg-icon"><FaMapMarkerAlt /></span>
+                    <div>
+                      <span className="ct-label">Location</span>
+                      <span className="ct-value">Mombasa, Kenya · Working remotely</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section className="pg-card">
+                <h2 className="pg-card-title ct-social-title">Find me on social media</h2>
+                <div className="ct-social">
+                  {socials.map((s) => (
+                    <a
+                      key={s.name}
+                      className="ct-social-link"
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="ct-social-icon">{s.icon}</span>
+                      <span className="ct-social-text">
+                        <b>{s.name}</b>
+                        <small>{s.handle}</small>
+                      </span>
+                      <FaArrowRight className="ct-social-arrow" />
+                    </a>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            {/* RIGHT: form */}
+            <section className="pg-card ct-form-card">
+              <div className="pg-card-head">
+                <span className="pg-icon"><FaPaperPlane /></span>
+                <h2 className="pg-card-title">Send me a message</h2>
               </div>
 
-              <h1>Send Me a Message</h1>
-            </div>
-            <div className="contact">
-              <form onSubmit={handleSubmit}>
-                <input
-                  className="input1"
-                  type="email"
-                  name="email"
-                  placeholder="Enter email"
-                  required
-                />
-                <br />
-                <textarea
-                  className="input2"
-                  name="message"
-                  placeholder="Enter your Message"
-                  required
-                />
-                <br />
-                <button className="btn5" type="submit">
-                  Send Message <span className="arrow">↑</span>
+              <form className="ct-form" onSubmit={handleSubmit}>
+                <div className="ct-row">
+                  <div className="ct-field">
+                    <label htmlFor="ct-name">Name</label>
+                    <input id="ct-name" className="ct-input" type="text" name="name" placeholder="Your name" required />
+                  </div>
+                  <div className="ct-field">
+                    <label htmlFor="ct-email">Email</label>
+                    <input id="ct-email" className="ct-input" type="email" name="email" placeholder="you@example.com" required />
+                  </div>
+                </div>
+
+                <div className="ct-field">
+                  <label htmlFor="ct-message">Message</label>
+                  <textarea
+                    id="ct-message"
+                    className="ct-input ct-textarea"
+                    name="message"
+                    placeholder="Tell me about your project or question..."
+                    required
+                  />
+                </div>
+
+                <button className="ct-submit" type="submit">
+                  <FaPaperPlane />
+                  <span>Send Message</span>
                 </button>
+
+                <p className="ct-note" role="status">
+                  {status || "This opens your email app with the message filled in."}
+                </p>
               </form>
-            </div>
+            </section>
           </div>
-        </section>
+        </div>
       </main>
     </>
   );
