@@ -1829,7 +1829,51 @@ margin-left:30px;
     max-width: 500px;
   }
 }
+/* ===== pages that use <SideNav /> ===== */
+.page-with-sidenav { box-sizing: border-box; }
 
+/* Projects */
+.page-with-sidenav #myProjects {
+  margin: 0;
+  width: auto;
+  padding: 32px 32px 0;
+  text-align: left;
+}
+.page-with-sidenav #myProjects h2 { margin: 0 0 6px; }
+
+/* About */
+.page-with-sidenav #About { margin: 32px 5% 0; width: auto; }
+.page-with-sidenav #About h1 { margin: 0 0 8px; font-size: 1.75rem; }
+.page-with-sidenav .Abouts {
+  width: auto;
+  max-width: 850px;
+  margin: 0;
+  font-weight: normal;
+}
+.page-with-sidenav .Abouts p { font-size: 1rem; line-height: 1.75; color: #333; }
+.page-with-sidenav .Abouts hr { margin-left: 0; }
+
+/* Contact */
+.page-with-sidenav .conect { margin: 32px 5% 0; width: auto; }
+.page-with-sidenav .con1 h1,
+.page-with-sidenav .con1 p { margin-left: 0; }
+.page-with-sidenav .con-buttons { margin-left: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.page-with-sidenav .con-buttons button { margin: 0; width: 150px; }
+.page-with-sidenav .contact { height: auto; width: auto; max-width: none; margin: 0; }
+.page-with-sidenav .input1,
+.page-with-sidenav .input2,
+.page-with-sidenav .btn5 {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .page-with-sidenav #myProjects { padding: 20px 16px 0; }
+  .page-with-sidenav .con-buttons button { width: calc(50% - 5px); }
+}
 /* Tablet header spacing */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .header {
