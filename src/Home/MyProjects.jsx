@@ -1,18 +1,14 @@
 import aboutImg from "../assets/About.png";
 import {
-  FaHome, FaProjectDiagram, FaEnvelope, FaCog, FaBars,
-  FaReact, FaNodeJs, FaTachometerAlt, FaUser, FaCode,
+  FaReact, FaNodeJs, FaCode,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { MdDashboard } from "react-icons/md";
 import {
   SiMysql, SiLaravel, SiTailwindcss, SiNextdotjs,
   SiJavascript, SiPython, SiStreamlit,
   SiExpress, SiCloudinary, SiSupabase, SiMongodb,
   SiTensorflow, SiScikitlearn, SiPhp,
 } from "react-icons/si";
-import homeImg from "../assets/image3.JPG";
-import { useState } from "react";
+import SideNav from "./Nav";
 
 // Tech-stack badge metadata: icon + brand color per technology.
 // Techs without an official brand icon (AJAX, Pylance) fall back to a generic code icon.
@@ -476,7 +472,7 @@ const projects = [
 const cardStyles = [
   "#myProjects, .mp-grid { overflow: visible !important; max-height: none !important; height: auto !important; }",
   ".mp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-auto-rows: auto; gap: 28px; padding: 12px 0 40px; }",
-  ".mp-card { position: relative; border-radius: 16px; overflow: hidden; background: #ffffff; border: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; transition: transform 0.25s ease, box-shadow 0.25s ease; text-decoration: none; color: inherit; cursor: pointer; }",
+  ".mp-card { position: relative; text-align: left; border-radius: 16px; overflow: hidden; background: #ffffff; border: 1px solid #e8e8e8; box-shadow: 0 2px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column; transition: transform 0.25s ease, box-shadow 0.25s ease; text-decoration: none; color: inherit; cursor: pointer; }",
   ".mp-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.13); }",
   ".mp-card:hover .mp-card-overlay { opacity: 1; }",
   ".mp-card:hover .mp-card-img-wrap img { transform: scale(1.04); }",
@@ -497,16 +493,10 @@ const cardStyles = [
   ".mp-tech-pill svg { font-size: 13px; flex-shrink: 0; }",
   "#myProjects h2 { font-size: 2rem; font-weight: 800; color: #111; margin-bottom: 6px; }",
   "#myProjects > p { color: #666; font-size: 15px; margin-bottom: 20px; }",
-  "#myProjects hr { border: none; border-top: 2px solid #eee; margin-bottom: 28px; }",
+  "#myProjects hr { border: none; border-top: 2px solid #eee; margin-bottom: 28px; margin-left: 0; }",
 ].join(" ");
 
 const MyProjects = () => {
-  const [showNav, setShowNav] = useState(false);
-
-  const dropdown = () => {
-    setShowNav(!showNav);
-  };
-
   const renderImage = (project) => {
     if (project.renderCustom === "presidential") {
       return <PresidentialAwardsPreview />;
@@ -527,110 +517,9 @@ const MyProjects = () => {
     <>
       <style>{cardStyles}</style>
 
-      <div className="navbar2">
-        <div className="fahome">
-          <h3 onClick={dropdown}>
-            <FaBars />
-          </h3>
-          <hr />
-        </div>
-        {showNav && (
-          <div className="navbars2">
-            <div className="navabarr">
-              <Link to="/">
-                <FaHome /> Home
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/Dashboard">
-                <MdDashboard /> Dashboard
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/about">
-                <FaUser /> About
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/services">
-                <FaCog /> Services
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/my-Projects">
-                <FaProjectDiagram /> Projects
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/contact">
-                <FaEnvelope /> Contact Me
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/Kelvin Mutinda (2).pdf">
-                <FaTachometerAlt /> My Resume
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
+      <SideNav />
 
-      <div className="home-response">
-        <section id="home">
-          <div className="homepage">
-            <div className="home2">
-              <img className="img" src={homeImg} alt="Kelvin Mutinda" />
-            </div>
-            <div className="Home1">
-              <h2 style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                Kelvin Mutinda
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#1DA1F2">
-                  <path d="M22.25 12c0 5.65-4.6 10.25-10.25 10.25S1.75 17.65 1.75 12 6.35 1.75 12 1.75 22.25 6.35 22.25 12zm-11.5 4.5l7-7-1.5-1.5-5.5 5.5-2.5-2.5-1.5 1.5 4 4z" />
-                </svg>
-              </h2>
-              <p>AI | Fullstack Engineer</p>
-            </div>
-          </div>
-
-          <div className="navbars">
-            <div className="navabarr">
-              <Link to="/">
-                <FaHome /> Home
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/Dashboard">
-                <MdDashboard /> Dashboard
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/about">
-                <FaUser /> About
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/services">
-                <FaCog /> Services
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/my-Projects">
-                <FaProjectDiagram /> Projects
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/contact">
-                <FaEnvelope /> Contact Me
-              </Link>
-            </div>
-            <div className="navabarr">
-              <Link to="/Kelvin Mutinda (2).pdf">
-                <FaTachometerAlt /> My Resume
-              </Link>
-            </div>
-          </div>
-        </section>
-
+      <main className="page-with-sidenav">
         <section id="myProjects">
           <h2>My Projects</h2>
           <p>Projects I have worked on across Fullstack, AI, Design, and Featured work</p>
@@ -695,7 +584,7 @@ const MyProjects = () => {
             ))}
           </div>
         </section>
-      </div>
+      </main>
     </>
   );
 };
