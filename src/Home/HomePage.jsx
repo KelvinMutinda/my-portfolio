@@ -15,7 +15,7 @@ import {
   SiFirebase,
   SiWordpress,
 } from "react-icons/si";
-import SideNav from "./SideNav";
+import SideNav from "./Nav";
 
 const tools = [
   { name: "ReactJS", icon: <FaReact color="#61DBFB" /> },
