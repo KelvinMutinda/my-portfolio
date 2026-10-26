@@ -485,7 +485,7 @@ const webProjects = [
   category: "Full Stack",
   renderCustom: null,
   useImported: false,
-  img: "/IdeaHub.png",
+  img: "/IdeaHub.jpg",
   alt: "IdeaHub Platform",
   title: "IdeaHub",
   tag: "Full Stack · Marketplace",
