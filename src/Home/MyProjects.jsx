@@ -5,7 +5,7 @@ import {
   SiMysql, SiLaravel, SiTailwindcss, SiNextdotjs,
   SiJavascript, SiPython, SiStreamlit,
   SiExpress, SiCloudinary, SiSupabase, SiMongodb,
-  SiTensorflow, SiScikitlearn, SiPhp,
+  SiTensorflow, SiScikitlearn, SiPhp, SiExpo,
 } from "react-icons/si";
 import SideNav from "./Nav";
 
@@ -13,6 +13,8 @@ import SideNav from "./Nav";
 // Techs without an official brand icon (AJAX, Pylance) fall back to a generic code icon.
 const TECH_META = {
   react: { label: "React", icon: <FaReact />, color: "#61DAFB" },
+  reactnative: { label: "React Native", icon: <FaReact />, color: "#149ECA" },
+  expo: { label: "Expo", icon: <SiExpo />, color: "#1B1F23" },
   nodejs: { label: "Node.js", icon: <FaNodeJs />, color: "#3C873A" },
   tailwind: { label: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38BDF8" },
   javascript: { label: "JavaScript", icon: <SiJavascript />, color: "#CA9A00" },
@@ -339,9 +341,66 @@ const FemScanPreview = () => {
   );
 };
 
-const FILTERS = ["All", "Web", "Full Stack", "AI", "Education & Finance"];
+// A single mobile screenshot inside a phone-shaped frame.
+// encodeURI makes file names containing spaces (e.g. "Kanja Mobile App.jpg") safe to use as URLs.
+const PhoneFrame = ({ src, alt }) => {
+  return (
+    <div className="pj-phone">
+      <img src={encodeURI(src)} alt={alt} loading="lazy" />
+    </div>
+  );
+};
 
-const projects = [
+const FILTERS = ["All", "Web", "Full Stack", "AI", "Education & Finance", "Mobile Apps"];
+
+// One entry per screenshot. Images live in /public. EDIT the title and description of each
+// entry so they describe what that specific screenshot shows.
+const mobileApp = [
+  {
+    img: "/Kanja Mobile App.jpg",
+    title: "Role-Based Dashboard",
+    description:
+      "The home screen of the Kanja Portal app. After login, each user lands on a dashboard built for their role (head of institution, teacher, or student) with quick access to the features they use most.",
+  },
+  {
+    img: "/Kanja Mobile App 2.jpg",
+    title: "Upload Results",
+    description:
+      "Teachers select a grade, subject, and exam type, then enter marks for each learner or upload them in bulk from a CSV file. Results are sent securely to the school's backend.",
+  },
+  {
+    img: "/Kanja Mobile App 3.jpg",
+    title: "Fee Payment & Tracking",
+    description:
+      "Record fee payments and track balances per learner. Parents and administrators can see what has been paid, what is outstanding, and the payment history at a glance.",
+  },
+  {
+    img: "/Kanja Mobile App 4.jpg",
+    title: "Progress Records",
+    description:
+      "Students and teachers can follow academic progress across terms and exams, with performance shown against the school's grading bands so improvement is easy to spot.",
+  },
+];
+
+// Turn each screenshot into a project card so it shows up under "All" and "Mobile Apps".
+const mobileProjects = mobileApp.map((screen, i) => ({
+  href: null,
+  category: "Mobile Apps",
+  variant: "phone",
+  renderCustom: null,
+  useImported: false,
+  img: screen.img,
+  alt: "Kanja Portal app: " + screen.title,
+  title: screen.title,
+  tag: "Mobile App",
+  tagColor: "#0D9488",
+  description: screen.description,
+  stack: ["reactnative", "expo", "php"],
+  foot: "Kanja Portal · Screen " + (i + 1) + " of " + mobileApp.length,
+  isNew: i === 0,
+}));
+
+const webProjects = [
   {
     href: "https://pinecreative2-mw4b.vercel.app",
     category: "Web",
@@ -407,7 +466,7 @@ const projects = [
     category: "Education & Finance",
     renderCustom: null,
     useImported: false,
-    img: null,
+    img: "/Ipsas Reporting.jpg",
     alt: "Trialbal School Financial Management",
     title: "Trialbal",
     tag: "EdTech · FinTech",
@@ -479,6 +538,9 @@ const projects = [
   },
 ];
 
+// Mobile screens first, then the web projects.
+const projects = [...mobileProjects, ...webProjects];
+
 const cardStyles = `
   .pj-toolbar {
     display: flex;
@@ -546,6 +608,48 @@ const cardStyles = `
     transition: transform 0.35s ease;
   }
   .pj-card:hover .pj-media img { transform: scale(1.03); }
+
+  /* ---- Mobile app cards: tall tinted stage with a phone frame ---- */
+  .pj-media-phone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+    background: linear-gradient(160deg, #ecfdf5 0%, #e0f2fe 100%);
+  }
+  .pj-phone {
+    position: relative;
+    box-sizing: border-box;
+    height: 310px;
+    aspect-ratio: 9 / 19;
+    overflow: hidden;
+    background: #111;
+    border: 6px solid #111;
+    border-radius: 28px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+    transition: transform 0.25s ease;
+  }
+  .pj-phone::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 42%;
+    height: 14px;
+    transform: translateX(-50%);
+    background: #111;
+    border-radius: 0 0 10px 10px;
+  }
+  .pj-media .pj-phone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 20px;
+  }
+  .pj-card:hover .pj-phone { transform: translateY(-5px); }
+  .pj-card:hover .pj-media .pj-phone img { transform: none; }
+
   .pj-placeholder {
     display: flex;
     align-items: center;
@@ -639,6 +743,9 @@ const MyProjects = () => {
   const visible = filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
   const renderImage = (project) => {
+    if (project.variant === "phone") {
+      return <PhoneFrame src={project.img} alt={project.alt} />;
+    }
     if (project.renderCustom === "presidential") {
       return <PresidentialAwardsPreview />;
     }
@@ -693,64 +800,68 @@ const MyProjects = () => {
 
           {/* CARDS */}
           <div className="pj-grid">
-            {visible.map((project) => (
-              <a
-                key={project.title}
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pj-card"
-              >
-                <div className="pj-media">
-                  {renderImage(project)}
-                  {project.isNew && <span className="pj-new">New</span>}
-                </div>
+            {visible.map((project) => {
+              // Cards with a link render as <a>; cards without one (the mobile screens) render as <div>.
+              const isLink = Boolean(project.href);
+              const Card = isLink ? "a" : "div";
+              const cardProps = isLink
+                ? { href: project.href, target: "_blank", rel: "noopener noreferrer" }
+                : {};
+              const isPhone = project.variant === "phone";
 
-                <div className="pj-body">
-                  <div className="pj-head">
-                    <h2 className="pj-title">{project.title}</h2>
-                    <span
-                      className="pj-tag"
-                      style={{
-                        background: project.tagColor + "18",
-                        color: project.tagColor,
-                        border: "1px solid " + project.tagColor + "33",
-                      }}
-                    >
-                      {project.tag}
-                    </span>
+              return (
+                <Card key={project.title} className="pj-card" {...cardProps}>
+                  <div className={"pj-media" + (isPhone ? " pj-media-phone" : "")}>
+                    {renderImage(project)}
+                    {project.isNew && <span className="pj-new">New</span>}
                   </div>
 
-                  <p className="pj-desc">{project.description}</p>
+                  <div className="pj-body">
+                    <div className="pj-head">
+                      <h2 className="pj-title">{project.title}</h2>
+                      <span
+                        className="pj-tag"
+                        style={{
+                          background: project.tagColor + "18",
+                          color: project.tagColor,
+                          border: "1px solid " + project.tagColor + "33",
+                        }}
+                      >
+                        {project.tag}
+                      </span>
+                    </div>
 
-                  <div className="pj-stack">
-                    {project.stack.map((techKey) => {
-                      const tech = TECH_META[techKey];
-                      if (!tech) return null;
-                      return (
-                        <span
-                          key={techKey}
-                          className="pj-pill"
-                          style={{
-                            background: tech.color + "16",
-                            color: tech.color,
-                            border: "1px solid " + tech.color + "40",
-                          }}
-                        >
-                          {tech.icon}
-                          {tech.label}
-                        </span>
-                      );
-                    })}
+                    <p className="pj-desc">{project.description}</p>
+
+                    <div className="pj-stack">
+                      {project.stack.map((techKey) => {
+                        const tech = TECH_META[techKey];
+                        if (!tech) return null;
+                        return (
+                          <span
+                            key={techKey}
+                            className="pj-pill"
+                            style={{
+                              background: tech.color + "16",
+                              color: tech.color,
+                              border: "1px solid " + tech.color + "40",
+                            }}
+                          >
+                            {tech.icon}
+                            {tech.label}
+                          </span>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
 
-                <div className="pj-foot">
-                  <span>View project</span>
-                  <FaArrowRight />
-                </div>
-              </a>
-            ))}
+                  <div className="pj-foot">
+                    <span>{isLink ? "View project" : project.foot || "Mobile app"}</span>
+                    {isLink && <FaArrowRight />}
+                  </div>
+                </Card>
+              );
+            })}
           </div>
         </section>
       </main>
