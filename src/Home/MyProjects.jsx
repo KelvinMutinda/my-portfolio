@@ -481,6 +481,21 @@ const webProjects = [
     isNew: false,
   },
   {
+  href: "https://idea-hub-web-one.vercel.app/",
+  category: "Full Stack",
+  renderCustom: null,
+  useImported: false,
+  img: "/IdeaHub.png",
+  alt: "IdeaHub Platform",
+  title: "IdeaHub",
+  tag: "Full Stack · Marketplace",
+  tagColor: "#2F45FF",
+  description:
+    "A full-stack platform where creators turn project ideas into income and skilled people find gigs that fit them. Users register with their skills, bio, profile picture and resume, post projects, and browse a live project feed, protected by token-based login, session expiry and server-side validation.",
+  stack: ["react", "nodejs", "express", "mern"],
+  isNew: true,
+},
+  {
     href: "https://propel-company-ai-website-zkh2.vercel.app/",
     category: "Web",
     renderCustom: null,
