@@ -14,8 +14,8 @@ import SideNav from "./Nav";
 const EMAIL = "mwendwamutinda24@gmail.com";
 
 const socials = [
-  { icon: <FaGithub />, name: "GitHub", handle: "mwendwamutinda24", href: "https://github.com/mwendwamutinda24" },
-  { icon: <FaLinkedin />, name: "LinkedIn", handle: "kelvin-mwendwa", href: "https://www.linkedin.com/in/kelvin-mwendwa-0b92063a" },
+  { icon: <FaGithub />, name: "GitHub", handle: "mwendwamutinda24", href: "https://github.com/KelvinMutinda" },
+  { icon: <FaLinkedin />, name: "LinkedIn", handle: "kelvin-mwendwa", href: "https://www.linkedin.com/in/kelvin-mutinda-0b92063ab/" },
   { icon: <FaInstagram />, name: "Instagram", handle: "@kelvinsoftwareengineer", href: "https://www.instagram.com/kelvinsoftwareengineer/" },
   { icon: <FaFacebook />, name: "Facebook", handle: "Kelvin Mutinda", href: "https://www.facebook.com/kingcorbin.junior.9" },
 ];
