@@ -485,7 +485,7 @@ const webProjects = [
     category: "Web",
     renderCustom: null,
     useImported: true,
-    img: /shoeVista.jpg,
+    img: "/shoeVista.jpg",
     alt: "Shoe Vista Ecomerce website",
     title: "Shoe Vista",
     tag: "Web Platform",
