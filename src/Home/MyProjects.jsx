@@ -481,6 +481,21 @@ const webProjects = [
     isNew: false,
   },
   {
+    href: "https://shoevista-orcin.vercel.app/",
+    category: "Web",
+    renderCustom: null,
+    useImported: true,
+    img: null,
+    alt: "Shoe Vista Ecomerce website",
+    title: "Shoe Vista",
+    tag: "Web Platform",
+    tagColor: "#1DA1F2",
+    description:
+      " modern, fully responsive e-commerce frontend built with React and Tailwind CSS. Features a clean product catalog, dynamic routing, and a seamless shopping UI, deployed via Vercel. Designed with a focus on performance and mobile-first user experience.",
+    stack: ["Reactjs", "MongoDb", "Nodejs", "express"],
+    isNew: false,
+  },
+  {
   href: "https://idea-hub-web-one.vercel.app/",
   category: "Full Stack",
   renderCustom: null,
