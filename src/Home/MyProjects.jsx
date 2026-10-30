@@ -445,7 +445,7 @@ const mobileApp = [
       "Record fee payments and track balances per learner. Parents and administrators can see what has been paid, what is outstanding, and the payment history at a glance.",
   },
   {
-    img: "/Kanja Mobile App 5.jpg",
+    img: "/ProgressRecord.jpg",
     title: "Progress Records",
     description:
       "Students and teachers can follow academic progress across terms and exams, with performance shown against the school's grading bands so improvement is easy to spot.",
