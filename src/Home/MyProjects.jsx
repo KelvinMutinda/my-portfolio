@@ -439,7 +439,7 @@ const mobileApp = [
       "Teachers select a grade, subject, and exam type, then enter marks for each learner or upload them in bulk from a CSV file. Results are sent securely to the school's backend.",
   },
   {
-    img: "/Kanja Mobile App 3.jpg",
+    img: "/FeePayment.jpg",
     title: "Fee Payment & Tracking",
     description:
       "Record fee payments and track balances per learner. Parents and administrators can see what has been paid, what is outstanding, and the payment history at a glance.",
