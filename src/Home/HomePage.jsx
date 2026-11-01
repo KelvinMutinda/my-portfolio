@@ -28,10 +28,12 @@ import {
   SiJavascript,
   SiFirebase,
   SiWordpress,
+  SiDjango,
 } from "react-icons/si";
 import SideNav from "./Nav";
 
 const tools = [
+  { name: "Django", icon: <SiDjango color="#61DBFB" /> },
   { name: "ReactJS", icon: <FaReact color="#61DBFB" /> },
   { name: "ExpressJS", icon: <SiExpress color="#000000" /> },
   { name: "NodeJS", icon: <FaNodeJs color="#68A063" /> },
