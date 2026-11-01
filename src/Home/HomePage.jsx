@@ -128,7 +128,7 @@ const HomePage = () => {
           {/* QUICK STATS */}
           <div className="pg-stats">
             <div className="pg-stat">
-              <span className="pg-stat-value">4+</span>
+              <span className="pg-stat-value">3+</span>
               <span className="pg-stat-label">Years of experience</span>
             </div>
             <div className="pg-stat">
