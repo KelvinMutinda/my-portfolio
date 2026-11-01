@@ -17,8 +17,8 @@ import {
 import SideNav from "./Nav";
 
 const skills = [
-  { icon: <FaCode />, label: "Frontend", items: ["React", "Vue", "Angular", "TailwindCSS"] },
-  { icon: <FaServer />, label: "Backend", items: ["Node.js", "Express", "Laravel", "PHP", "Springboot"] },
+  { icon: <FaCode />, label: "Frontend", items: ["React", "Vue", "Angular", "TailwindCSS","TypeScript"] },
+  { icon: <FaServer />, label: "Backend", items: ["Node.js", "Express", "Laravel", "PHP", "Springboot","Nextjs"] },
   { icon: <FaDatabase />, label: "Databases", items: ["MongoDB", "MySQL", "Firebase", "PostgreSQL"] },
   { icon: <FaRobot />, label: "AI/ML", items: ["Python", "TensorFlow", "NLP"] },
   { icon: <FaTools />, label: "Tools", items: ["Git", "Figma", "WordPress"] },
