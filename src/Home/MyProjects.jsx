@@ -481,6 +481,21 @@ const webProjects = [
     isNew: false,
   },
   {
+    href: "https://weruhostels.vercel.app/",
+    category: "Web",
+    renderCustom: null,
+    useImported: true,
+    img: "/Weru Hostels.JPG,
+    alt: "Pine Creative Project",
+    title: "Pine Creative",
+    tag: "Web Platform",
+    tagColor: "#1DA1F2",
+    description:
+      "A custom static rental property Management System for manangging rent , Contains both Admin Dashboard and Tenant dashboard.The tenant sends requests for room availability, admin approves and sends details to tenant dashboard.Tracks payments history and all other details",
+    stack: ["Reactjs", "node", "mongoDb", "express"],
+    isNew: false,
+  },
+  {
     href: "https://shoevista-orcin.vercel.app/",
     category: "Web",
     renderCustom: null,
