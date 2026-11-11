@@ -485,7 +485,7 @@ const webProjects = [
     category: "Web",
     renderCustom: null,
     useImported: true,
-    img: "/Weru Hostels.JPG,
+    img: "/Weru Hostels.jpg",
     alt: "Pine Creative Project",
     title: "Pine Creative",
     tag: "Web Platform",
